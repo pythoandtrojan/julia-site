@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Julia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        h1 {
+            color: #e75480;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            color: #888;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 30px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .hearts {
+            color: #e75480;
+            font-size: 1.2em;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #surpriseBtn {
+            background-color: #e75480;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        #surpriseBtn:hover {
+            background-color: #d1426f;
+        }
+        
+        #surpriseContent {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .guinea-pig {
+            font-size: 3em;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Para Julia</h1>
+            <div class="date">Anápolis, 9 de junho de 2025</div>
+        </header>
+        
+        <div class="content">
+            <p>Oi Julia,</p>
+            
+            <p>Eu queria te agradecer por ter entrado na minha vida, mesmo que ainda estejamos nos conhecendo. Você parece ser uma pessoa incrível, e minha irmã sempre fala muito bem de você.</p>
+            
+            <p>Foi muito especial o gesto de presentear minha irmã com o Chico. Aquele porquinho da índia já trouxe muita alegria pra nossa casa, e isso mostra o quanto você é generosa e atenciosa.</p>
+            
+            <div class="photo-placeholder">
+                [Aqui poderia ter uma foto sua com sua irmã e o Chico]
+            </div>
+            
+            <p>Espero que possamos nos conhecer melhor nos próximos tempos. Quem sabe essa seja o início de uma boa amizade!</p>
+            
+            <div class="signature">
+                <p>Com carinho,<br>
+                <span id="yourName">[Seu Nome]</span></p>
+            </div>
+            
+            <button id="surpriseBtn">Clique para uma surpresa!</button>
+            
+            <div id="surpriseContent" class="hidden">
+                <p>Uma homenagem ao Chico:</p>
+                <div class="guinea-pig">🐹</div>
+                <p>Obrigado por trazer alegria para nossa família!</p>
+            </div>
+        </div>
+        
+        <footer>
+            Feito com <span class="hearts">♥</span> em Anápolis
+        </footer>
+    </div>
+    
+    <script>
+        // Adiciona seu nome automaticamente
+        document.getElementById('yourName').textContent = '[Seu Nome]'; // Substitua pelo seu nome
+        
+        // Surpresa interativa
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const surprise = document.getElementById('surpriseContent');
+            const btn = document.getElementById('surpriseBtn');
+            
+            if (surprise.classList.contains('hidden')) {
+                surprise.classList.remove('hidden');
+                btn.textContent = 'Obrigado Chico!';
+                
+                // Animação do porquinho
+                const guineaPig = document.querySelector('.guinea-pig');
+                let scale = 1;
+                let growing = true;
+                
+                const animate = setInterval(() => {
+                    if (growing) {
+                        scale += 0.05;
+                        if (scale >= 1.5) growing = false;
+                    } else {
+                        scale -= 0.05;
+                        if (scale <= 1) growing = true;
+                    }
+                    
+                    guineaPig.style.transform = `scale(${scale})`;
+                }, 100);
+                
+                setTimeout(() => {
+                    clearInterval(animate);
+                    guineaPig.style.transform = 'scale(1)';
+                }, 3000);
+                
+            } else {
+                window.location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
